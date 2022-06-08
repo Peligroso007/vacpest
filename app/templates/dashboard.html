@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+          integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+
+
+
+    {% block links %}
+    {% endblock links %}
+
+    <title>Vacpest {% block title %}{% endblock title %}</title>
+    <style>{% block style %}{% endblock style %}
+    @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+    @import url('https://fonts.googleapis.com/css2?family=Glory:wght@300&family=Lobster&display=swap');
+
+    .navbar-brand {
+        display: flex;
+        margin-left: 15% !important;
+        align-items: center;
+        font-size: 35px;
+        font-family: 'Lobster', cursive;
+        letter-spacing: 2px;
+    }
+
+    .navbar-brand img {
+        margin-right: 15px;
+    }
+
+    .nav-log {
+        margin-right: 15% !important;
+    }
+
+    a {
+        font-family: Poppins-Regular;
+        text-decoration: none;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #666666;
+        margin: 0px;
+        transition: all 0.4s;
+        -webkit-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+    }
+
+    a:focus {
+        outline: none !important;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #57b846;
+    }
+
+    .welcome-user {
+        margin-right: 40px;
+    }
+
+    .logout {
+        display: flex;
+        align-items: center;
+    }
+
+    .logout i {
+        margin-right: 5px;
+    }
+
+    #wrapper {
+        padding-left: 0;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }
+
+    #wrapper.toggled {
+        padding-left: 250px;
+    }
+
+    #sidebar-wrapper {
+        z-index: 1000;
+        position: absolute;
+        left: 250px;
+        width: 0;
+        height: 100%;
+        margin-left: -250px;
+        overflow-y: auto;
+        background: #f8f9fa;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #page-content-wrapper {
+        width: 100%;
+        position: absolute;
+        padding: 15px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: absolute;
+        margin-right: -250px;
+    }
+
+    /* Sidebar Styles */
+
+    .sidebar-nav {
+        position: absolute;
+        top: 0;
+        width: 250px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .sidebar-nav li {
+        text-indent: 20px;
+        line-height: 40px;
+    }
+
+    @media (min-width: 768px) {
+        #wrapper {
+            padding-left: 250px;
+        }
+
+        #wrapper.toggled {
+            padding-left: 0;
+        }
+
+        #sidebar-wrapper {
+            width: 250px;
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            width: 0;
+        }
+
+        #page-content-wrapper {
+            padding: 20px;
+            position: relative;
+        }
+
+        #wrapper.toggled #page-content-wrapper {
+            position: relative;
+            margin-right: 0;
+        }
+    }
+    </style>
+</head>
+<body>
+<!-- Image and text -->
+<nav class="navbar navbar-light bg-light">
+    <div class="navbar-brand">
+        <img src="/media/logo.JPG" width="40" height="40" class="d-inline-block align-top" alt="">
+        <div>Vacpest</div>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+            Documents
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {% if user.profile.role == 1 %}
+                <li><a class="dropdown-item" href="#">Quotation</a></li>
+                <li><a class="dropdown-item" href="#">Instruction Form</a></li>
+                <li><a class="dropdown-item" href="#">Invoice</a></li>
+                <li><a class="dropdown-item" href="#">Contract</a></li>
+                <li><a class="dropdown-item" href="#">Survey Report</a></li>
+                <li><a class="dropdown-item" href="#">Service Report</a></li>
+                <li><a class="dropdown-item" href="#">Service Card</a></li>
+                <li><a class="dropdown-item" href="#">Trend Analysis Report</a></li>
+                <li><a class="dropdown-item" href="#">Monthly Treatment Report</a></li>
+            {% endif %}
+            {% if user.profile.role == 3 %}
+                <li><a class="dropdown-item" href="#">Quotation</a></li>
+                <li><a class="dropdown-item" href="#">Instruction Form</a></li>
+                <li><a class="dropdown-item" href="#">Invoice</a></li>
+                <li><a class="dropdown-item" href="#">Contract</a></li>
+                <li><a class="dropdown-item" href="#">Survey Report</a></li>
+            {% endif %}
+        {% if user.profile.role == 2 %}
+            <li><a class="dropdown-item" href="#">Instruction Form</a></li>
+                <li><a class="dropdown-item" href="#">Invoice</a></li>
+                <li><a class="dropdown-item" href="#">Contract</a></li>
+            <li><a class="dropdown-item" href="#">Service Card</a></li>
+        {% endif %}
+        {% if user.profile.role == 4 %}
+            <li><a class="dropdown-item" href="{% url 'job_record' %}">Service Report</a></li>
+        {% endif %}
+        {% if user.profile.role == 5 %}
+            <li><a class="dropdown-item" href="#">Instruction Form</a></li>
+                <li><a class="dropdown-item" href="#">Contract</a></li>
+        {% endif %}
+        {% if user.profile.role == 6 %}
+            <li><a class="dropdown-item" href="#">Instruction Form</a></li>
+                <li><a class="dropdown-item" href="#">Invoice</a></li>
+                <li><a class="dropdown-item" href="#">Contract</a></li>
+        {% endif %}
+        {% if user.profile.role == 7 %}
+            <li><a class="dropdown-item" href="{% url 'job_record' %}">Service Report</a></li>
+                <li><a class="dropdown-item" href="#">Service Card</a></li>
+                <li><a class="dropdown-item" href="#">Trend Analysis Report</a></li>
+                <li><a class="dropdown-item" href="#">Monthly Treatment Report</a></li>
+        {% endif %}
+        </ul>
+    </div>
+    {% if request.user.is_authenticated %}
+        <ul class="nav pull-right nav-log">
+            <li><a class="welcome-user" href="#">Welcome, {{ user.username }}</a>
+
+            <li><a class="logout" href="{% url 'logout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
+            </li>
+        </ul>
+    {% endif %}
+
+</nav>
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            {% if user.profile.role == 1 or user.profile.role == 2 %}
+                {% url 'register' as url %}
+                <li>
+                    <a style="{% if request.path == url %}color: Green; display: block; background: #f2f0eb;{% endif %}" href="{% url 'register' %}">User Registrations</a>
+                </li>
+                {% url 'activity_log' as url %}
+                <li>
+                    <a  style="{% if request.path == url %}color: Green; display: block; background: #f2f0eb;{% endif %}" href="{% url 'activity_log' %}">Activity Log</a>
+                </li>
+                {% url 'employee' as url %}
+                <li>
+                    <a style="{% if request.path == url %}color: Green; display: block; background: #f2f0eb;{% endif %}" href="{% url 'employee' %}">Employees</a>
+                </li>
+            {% endif %}
+            {% if user.profile.role == 1 or user.profile.role == 2 or user.profile.role == 3 %}
+                {% url 'application' as url %}
+                <li>
+                    <a style="{% if request.path == url %}color: Green; display: block; background: #f2f0eb;{% endif %}" href="{% url 'application' %}">Application Form</a>
+                </li>
+            {% endif %}
+        {% url 'job_record' as url %}
+            <li>
+                <a style="{% if request.path == url %}color: Green; display: block; background: #f2f0eb;{% endif %}" href="{% url 'job_record' %}">Records</a>
+            </li>
+
+
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% block contain %}
+
+
+
+                    {% endblock contain %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+<script>{% block script %}{% endblock script %}</script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+-->
+</body>
+</html>

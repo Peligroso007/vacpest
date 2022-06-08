@@ -1,0 +1,25 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 100,
+    "fields": {
+      "password": "pbkdf2_sha256$120000$1EzIJcnd5Jlx$Vb1HyV5NnvD+gtumq99ENezHZeUPTB2v1cFYp1xnf7I=",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "Admin",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true
+    }
+  },
+  {
+    "model": "app.profile",
+    "pk": 100,
+    "fields": {
+      "user_id": 100,
+      "is_verified": true,
+      "role": 1
+    }
+  }
+]

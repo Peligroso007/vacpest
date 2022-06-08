@@ -1,0 +1,70 @@
+{% extends 'dashboard.html' %}
+
+{% block contain %}
+    {% if messages %}
+        <div class="alert alert-info">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+            <th>S.N</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Active</th>
+            <th>Role</th>
+            {% if user.profile.role == 1 %}
+                <th>Action</th>
+            {% endif %}
+        </tr>
+
+        </thead>
+
+
+        {% for emp in employees %}
+            <tbody>
+
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ emp.username }}</td>
+                <td>{{ emp.first_name }}</td>
+                <td>{{ emp.last_name }}</td>
+                <td>{{ emp.profile.phone }}</td>
+                <td>{{ emp.email }}</td>
+                <td>{{ emp.profile.address }}</td>
+                <td>{% if emp.profile.is_verified %}ACTIVE{% else %}NOT ACTIVE{% endif %}</td>
+                <td>{% if emp.profile.role == 1 %}Manager{% elif emp.profile.role == 2 %}
+                    Operator{% elif emp.profile.role == 3 %}Sales{% elif emp.profile.role == 4 %}
+                    Technician{% elif emp.profile.role == 5 %}Contract{% elif emp.profile.role == 6 %}
+                    Account{% elif emp.profile.role == 7 %}Quality Assurance{% else %}Role not define.{% endif %}</td>
+                {% if user.profile.role == 1 %}
+                    <td>
+                        <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+            Action
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {% if user.profile.role == 1 %}
+                <li><a class="dropdown-item" href="{% url "edit_employee" emp.id %}">Edit</a></li>
+                <li><a class="dropdown-item" href="{% url "delete_employee" emp.id %}">Delete</a></li>
+            {% endif %}
+        </ul>
+    </div>
+                    </td>
+                {% endif %}
+
+            </tr>
+            </tbody>
+
+        {% endfor %}
+    </table>
+
+{% endblock %}

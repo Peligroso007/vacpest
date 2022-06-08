@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block contain %}
+    <div class="container mt-5 border">
+    <h2 class="mt-5 mb-5 text-center">Service Report</h2>
+        <div class="p-4 row">
+            <div class="form-group col-3">
+                <h6 class="pb-1">First Name: </h6>
+                {{ record.first_name }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Last Name: </h6>
+                {{ record.last_name }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Address: </h6>
+                {{ record.address }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Email: </h6>
+                {{ record.email }}
+            </div>
+        </div>
+    <div class="p-4 row">
+            <div class="form-group col-3">
+                <h6 class="pb-1">City: </h6>
+                {{ record.city }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">State: </h6>
+                {{ record.state }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Post Code: </h6>
+                {{ record.post_code }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Job Date: </h6>
+                {{ record.job_date }}
+            </div>
+        </div>
+    <div class="p-4 row">
+            <div class="form-group col-3">
+                <h6 class="pb-1">Job Time: </h6>
+                {{ record.job_time }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Job Details: </h6>
+                {{ record.job_detail }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Technician: </h6>
+                {{ record.technician }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Service Frequency: </h6>
+                {{ record.service_report.service_frequency }}
+            </div>
+        </div>
+    <div class="p-4 row">
+            <div class="form-group col-3">
+                <h6 class="pb-1">Service Finished Time: </h6>
+                {{ record.service_report.service_finished_time }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Further Service: </h6>
+                {{ record.service_report.further_service }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Area Treated: </h6>
+                {{ record.service_report.area_treated }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Unchecked Area: </h6>
+                {{ record.service_report.unchecked_area }}
+            </div>
+        </div>
+    <div class="p-4 row">
+            <div class="form-group col-3">
+                <h6 class="pb-1">Type Of Pest Control: </h6>
+                {{ record.service_report.type_of_pest_control }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Other Type: </h6>
+                {{ record.service_report.other_type }}
+            </div>
+            <div class="form-group col-3">
+                <h6 class="pb-1">Service Report: </h6>
+                {{ record.service_report.service_report }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

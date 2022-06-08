@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+    Verify
+{% endblock title %}
+
+{% block style %}
+    .mid{
+        position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    }
+{% endblock %}
+
+{% block contain %}
+<div class="card mid" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">We have sent mail to the user</h5>
+    <p class="card-text">The user can verify the mail.</p>
+      <a class="btn btn-primary text-middle" href="{% url 'register' %}">Go Back to register</a>
+  </div>
+</div>
+{% endblock contain %}

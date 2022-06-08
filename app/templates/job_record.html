@@ -1,0 +1,90 @@
+{% extends 'dashboard.html' %}
+
+{% block contain %}
+            {% if messages %}
+<div class="alert alert-info">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</div>
+    {% endif %}
+    <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+    <tr>
+  <th>S.N</th>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th>Address</th>
+  <th>City</th>
+  <th>State</th>
+  <th>Post Code</th>
+  <th>Job Date</th>
+  <th>Job Time</th>
+  <th>Job Details</th>
+    {% if user.profile.role == 4 %}
+  <th>Confirm Job</th>
+        <th>Notify Client</th>
+{% endif %}
+    {% if user.profile.role == 1 %}
+        <th>Technician</th>
+    {% endif %}
+    {% if user.profile.role == 4 or user.profile.role == 1 %}
+        <th>Service Report</th>
+    {% endif %}
+    {% if user.profile.role == 3 %}
+        <th>Action</th>
+    {% endif %}
+
+</tr>
+
+    </thead>
+
+
+{% for rec in record %}
+    <tbody>
+
+    <tr>
+  <td style="{% if rec.is_done %}background: #70bf63; color: yellow;{% else %}background: #f5837a; color: white;{% endif %}">{{ forloop.counter }}</td>
+  <td>{{ rec.first_name }}</td>
+  <td>{{ rec.last_name }}</td>
+  <td>{{ rec.address }}</td>
+  <td>{{ rec.city }}</td>
+  <td>{{ rec.state }}</td>
+  <td>{{ rec.post_code }}</td>
+  <td>{{ rec.job_date }}</td>
+  <td>{{ rec.job_time }}</td>
+  <td>{{ rec.job_detail }}</td>
+    {% if user.profile.role == 4 %}
+  <td><a class="btn btn-primary" href="{% url 'job_confirm' rec.id %}">Confirm</a></td>
+  <td><a class="btn btn-primary" href="{% url 'notify' rec.id %}">Notify</a></td>
+    {% endif %}
+    {% if user.profile.role == 1 %}
+        <td>{{ rec.technician }}</td>
+
+    {% endif %}
+    {% if user.profile.role == 4 or user.profile.role == 1 or user.profile.role == 7 %}
+        <td><a class="btn btn-primary" href="{% url 'view_service_report' rec.id %}">View</a></td>
+    {% endif %}
+    {% if user.profile.role == 3 %}
+        <td>
+                        <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+            Action
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {% if user.profile.role == 3 %}
+                <li><a class="dropdown-item" href="{% url "edit_record" rec.id %}">Edit</a></li>
+                <li><a class="dropdown-item" href="{% url "delete_record" rec.id %}">Delete</a></li>
+            {% endif %}
+        </ul>
+    </div>
+                    </td>
+    {% endif %}
+    </tr>
+    </tbody>
+
+{% endfor %}
+    </table>
+
+{% endblock %}

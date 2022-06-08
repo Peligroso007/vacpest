@@ -1,0 +1,11 @@
+{% extends 'dashboard.html' %}
+
+{% block contain %}
+<div>
+{% for act in activity reversed %}
+<div class="alert alert-primary" role="alert">
+  {{ act.notification }}<span style="float: right;">{{ act.activity_time }}</span>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

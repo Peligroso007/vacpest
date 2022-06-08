@@ -1,0 +1,176 @@
+{% extends 'dashboard.html' %}
+
+
+{% block links %}
+
+{% endblock %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block contain %}
+
+    <section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+            <form method="post" action="{% url 'update_employee' employee.id %}">
+                {% csrf_token %}
+{% if messages %}
+<div class="alert alert-info">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</div>
+{% endif %}
+              <div class="row">
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" name="first_name" id="firstName" value="{{ employee.first_name }}" class="form-control form-control-lg" />
+                    <label class="form-label" for="firstName">First Name</label>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" name="last_name" value="{{ employee.last_name }}" id="lastName" class="form-control form-control-lg" />
+                    <label class="form-label" for="lastName">Last Name</label>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                  <div class="form-outline datepicker w-100">
+                    <input
+                      type="text"
+                      name="address"
+                      class="form-control form-control-lg"
+                      id="birthdayDate"
+                      value="{{ employee.profile.address }}"
+                    />
+                    <label for="address" class="form-label">Address</label>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4">
+
+                  <h6 class="mb-2 pb-1">Gender: </h6>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="femaleGender"
+                      value="Female"
+                      {% if employee.profile.gender == 'Female' %}
+                      checked
+                      {% endif %}
+                    />
+                    <label class="form-check-label" for="femaleGender">Female</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="maleGender"
+                      value="Male"
+                      {% if employee.profile.gender == 'Male' %}
+                      checked
+                      {% endif %}
+                    />
+                    <label class="form-check-label" for="maleGender">Male</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="otherGender"
+                      value="Other"
+                      {% if employee.profile.gender == 'Other' %}
+                      checked
+                      {% endif %}
+                    />
+                    <label class="form-check-label" for="otherGender">Other</label>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <input type="email" name="email" value="{{ employee.email }}" id="emailAddress" class="form-control form-control-lg" />
+                    <label class="form-label" for="email">Email</label>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <input type="tel" name="phone" id="phoneNumber" value="{{ employee.profile.phone }}" class="form-control form-control-lg" />
+                    <label class="form-label" for="phoneNumber">Phone Number</label>
+                  </div>
+
+                </div>
+              </div>
+
+                <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <input type="text" name="username" value="{{ employee.username }}" class="form-control form-control-lg" />
+                    <label class="form-label" for="employeename">Username</label>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+
+                  <select name="role" class="select form-control-lg">
+                    <option value="1" {% if employee.profile.role == 1 %}selected{% endif %}>Manager</option>
+                    <option value="2" {% if employee.profile.role == 2 %}selected{% endif %}>Operator</option>
+                    <option value="3" {% if employee.profile.role == 3 %}selected{% endif %}>Sales</option>
+                    <option value="4" {% if employee.profile.role == 4 %}selected{% endif %}>Technician</option>
+                    <option value="5" {% if employee.profile.role == 5 %}selected{% endif %}>Contract</option>
+                    <option value="6" {% if employee.profile.role == 6 %}selected{% endif %}>Account</option>
+                    <option value="7" {% if employee.profile.role == 7 %}selected{% endif %}>Quality Assurance</option>
+                  </select>
+                  <label class="form-label ml-2 select-label">Choose Role</label>
+
+                </div>
+              </div>
+
+              <div class="mt-4 pt-2">
+                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

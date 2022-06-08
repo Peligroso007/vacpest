@@ -1,0 +1,148 @@
+{% extends 'dashboard.html' %}
+
+{% block contain %}
+    <form method="post" action="{% url 'job_confirm' record_id %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="mb-3">
+                <label for="exampleInputServiceFrequency" class="form-label">Service Frequency</label>
+                <input type="number" name="service_frequency" class="form-control" id="exampleInputServiceFrequency">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputServiceFinishedTime" class="form-label">Service Finished Time</label>
+                <input type="time" name="service_finished_time" class="form-control"
+                       id="exampleInputServiceFinishedTime">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputFurtherService" class="form-label">Further Service</label>
+                <input type="date" name="further_service" class="form-control" id="exampleInputFurtherService">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputAreaTreated" class="form-label">Area Treated</label>
+                <input type="text" name="area_treated" class="form-control" id="exampleInputAreaTreated">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputUncheckedArea" class="form-label">Unchecked Area</label>
+                <input type="text" name="unchecked_area" class="form-control" id="exampleInputUncheckedArea">
+            </div>
+            <div class="col-md-8 mb-4">
+
+                <h6 class="mb-2 pb-1">Type of Pest Control: </h6>
+
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="type_of_pest_control"
+                            value="Termite Inspection"
+                            checked
+                    />
+                    <label class="form-check-label" for="femaleGender">Termite Inspection</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="type_of_pest_control"
+                            value="Cockroach"
+                    />
+                    <label class="form-check-label" for="maleGender">Cockroach</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="type_of_pest_control"
+                            value="Ant"
+                    />
+                    <label class="form-check-label" for="otherGender">Ant</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="type_of_pest_control"
+                            value="Rat"
+                    />
+                    <label class="form-check-label" for="otherGender">Rat</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="type_of_pest_control"
+                            value="Mosquito"
+                    />
+                    <label class="form-check-label" for="otherGender">Mosquito</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="type_of_pest_control"
+                            value="other"
+                    />
+                    <label class="form-check-label" for="otherGender">Other Pest</label>
+                </div>
+
+            </div>
+            <div class="col-md-8 mb-4">
+
+                <h6 class="mb-2 pb-1">Other Type of Job: </h6>
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="other_type"
+                            value="Garden Termite"
+                    />
+                    <label class="form-check-label" for="otherGender">Garden Termite</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="other_type"
+                            value="Fogging"
+                    />
+                    <label class="form-check-label" for="otherGender">Fogging</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="other_type"
+                            value="ULV Misting"
+                    />
+                    <label class="form-check-label" for="otherGender">ULV Misting</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="other_type"
+                            value="Larviciding"
+                    />
+                    <label class="form-check-label" for="otherGender">Larviciding</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            type="radio"
+                            name="other_type"
+                            value="Others"
+                    />
+                    <label class="form-check-label" for="otherGender">Others</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputServiceReport" class="form-label">Service Report</label>
+                <textarea name="service_report" class="form-control" id="exampleInputServiceReport" rows="4" cols="50">
+    </textarea>
+            </div>
+            <button type="submit" class="col-1 btn btn-primary">Submit</button>
+        </div>
+    </form>
+{% endblock %}
